@@ -22,7 +22,13 @@ function App() {
   console.log('user', user)
 
   const login = async () => {
-    authenticate({ provider: "walletconnect" })
+    let u
+    try {
+      u = await authenticate({ provider: "metamask", chainId: 5 })
+    } catch (e) {
+      console.error('err logging in', e)
+    }
+    console.log('login', u)
     // const p = await initWeb3()
     // setUser(p)
 

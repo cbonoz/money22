@@ -18,7 +18,7 @@ export const initWorld = async (contractAddress, userWalletAddress) => {
    
     worldID.init("world-id-container", {
         enableTelemetry: true,
-        actionId: contractAddress, // <- use the address of your smart contract
-        signal: userWalletAddress, // <- Fill in with the user's wallet address here
+        actionId: contractAddress || 'X', // <- use the address of your smart contract
+        signal: userWalletAddress || 'Y', // <- Fill in with the user's wallet address here
     });
 }

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input, Row, Col, Radio, Steps, Result } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { signatureUrl, ipfsUrl, getExplorerUrl } from "../util";
 import { EXAMPLE_FORM } from "../util/constants";
 import { ethers } from "ethers";
 import { validAddress, deployContract } from "../contract/deploy";
+import { enableWorld, initWorld } from "../util/worldcoin";
 
 const { Step } = Steps;
 
@@ -17,6 +18,15 @@ function CreatePool(props) {
   const updateData = (key, value) => {
     setData({ ...data, [key]: value });
   };
+
+  const init = async () => {
+    await enableWorld()
+    await initWorld()
+  }
+
+  useEffect(() => {
+    init()
+  }, [])
 
   const isValid = (data) => {
     return (
@@ -40,12 +50,6 @@ function CreatePool(props) {
 
     setLoading(true);
     const body = { ...data };
-
-    // Format files for upload.
-    const files = body.files.map((x) => {
-      return x;
-    });
-
     let res = { ...data };
 
     try {
@@ -71,12 +75,12 @@ function CreatePool(props) {
       // Result rendered after successful doc upload + contract creation.
       setResult(res);
       try {
-        // await postPacket(res.esignature request);
+        // await postPacket(res.workpool request);
       } catch (e) {
-        console.error("error posting esignature request", e);
+        console.error("error posting workpool request", e);
       }
     } catch (e) {
-      console.error("error creating esignature request", e);
+      console.error("error creating workpool request", e);
     } finally {
       setLoading(false);
     }
@@ -96,12 +100,14 @@ function CreatePool(props) {
       <Row>
         <Col span={16}>
           <div className="create-form white boxed">
-            <h2>Create new esignature request</h2>
+            <h2>Create new workpool request</h2>
+            <div id="world-id-container"></div>
+
             <br />
 
-            <h3 className="vertical-margin">Esignature request title:</h3>
+            <h3 className="vertical-margin">workpool request title:</h3>
             <Input
-              placeholder="Title of the esignature request"
+              placeholder="Title of the workpool request"
               value={data.title}
               prefix="Title:"
               onChange={(e) => updateData("title", e.target.value)}
@@ -109,7 +115,7 @@ function CreatePool(props) {
             <TextArea
               aria-label="Description"
               onChange={(e) => updateData("description", e.target.value)}
-              placeholder="Description of the esignature request"
+              placeholder="Description of the workpool request"
               prefix="Description"
               value={data.description}
             />
@@ -135,7 +141,7 @@ function CreatePool(props) {
               disabled={loading} // || !isValidData}
               loading={loading}
             >
-              Create esignature request!
+              Create workpool request!
             </Button>
             {!error && !result && loading && (
               <span>&nbsp;Note this may take a few moments.</span>
@@ -163,7 +169,7 @@ function CreatePool(props) {
                   Share this url with the potential signer:
                   <br />
                   <a href={result.signatureUrl} target="_blank">
-                    Open eSignature url
+                    Open workpool url
                   </a>
                 </p>
 
@@ -183,12 +189,12 @@ function CreatePool(props) {
             >
               <Step title="Fill in fields" description="Enter required data." />
               <Step
-                title="Create esignature request"
-                description="Requires authorizing a create esignature request operation."
+                title="Create workpool request"
+                description="Requires authorizing a create workpool request operation."
               />
               <Step
-                title="Wait for esignature"
-                description="Your esignature request will be live for others to view and submit esignature."
+                title="Wait for workpool"
+                description="Your workpool request will be live for others to view and submit workpool."
               />
             </Steps>
           </div>
