@@ -3,11 +3,6 @@ import { NFT_STORAGE_KEY } from './constants';
 // Import the NFTStorage class and File constructor from the 'nft.storage' package
 import { NFTStorage, File } from 'nft.storage'
 
-// The 'mime' npm package helps us set the correct file type on our File objects
-import mime from 'mime'
-
-
-
 export function fileFromUrl(externalUrl) {
     return axios
   .get(externalUrl, {
@@ -20,7 +15,6 @@ export function fileFromUrl(externalUrl) {
     console.error(ex);
   });
 }
-
 
 export async function storeNFT(imageUrl, name, description) {
     // load the file from disk

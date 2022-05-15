@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Steps } from "antd";
+import { Button, Steps } from "antd";
 import { Row, Col } from "antd";
 import { Typography, Divider } from "antd";
 
@@ -12,12 +12,12 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { Step } = Steps;
 
 const REASONS = [
-  "No subscription or credit card fees required",
-  "Use table side or as your own showcase with free hosting",
-  "Accept cryptocurrency as payment",
+  "Create an investing pool with your friends and coworkers",
+  "Receive interest as you increase your investment stake",
+  "Earn NFT rewards as you hit investment milestones",
 ];
 
-function About(props) {
+function About({user, login}) {
   return (
     <div className="content about-page">
       <Row>
@@ -30,10 +30,10 @@ function About(props) {
 
           {REASONS.map((r, i) => {
             return (
-              <div key={i}>
+              <div key={i} className='reason'>
                 <CheckCircleTwoTone twoToneColor="#52c41a" />
                 &nbsp;
-                {r}
+                {r}.
               </div>
             );
           })}
@@ -41,6 +41,10 @@ function About(props) {
         <Col span={12}>
           <img src={logo} />
         </Col>
+      </Row>
+
+      <Row>
+        <Button type="primary" size="large" onClick={login}>Login</Button>
       </Row>
 
       <p></p>
