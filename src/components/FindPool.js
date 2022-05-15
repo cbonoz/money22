@@ -1,16 +1,25 @@
+import { Input, Button } from 'antd'
 import React, {useState} from 'react'
-import FindCompany from './FindCompany'
+import PoolInfo from './PoolInfo'
 
 export default function FindPool() {
-    const [step, setStep] = useState(0)
+  const [poolId, setPoolId] = useState()
+  const [value, setValue] = useState()
     
   return (
     <div>
-        <FindCompany/>
+      {!poolId && <div>
+        <Input className='standard-input' type="text" value={value} onChange={e => setValue(e.target.value)}/>
+        <Button className='standard-btn' disabled={!value} type="primary" onClick={() => setPoolId(value)}> 
+          Continue
+        </Button>
+        
+      </div>}
 
 
-
-
+      {poolId && <div>
+        <PoolInfo poolId={poolId}/>
+      </div>}
 
 
     </div>

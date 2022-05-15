@@ -44,6 +44,9 @@ Define the following environment variables:
 <pre>
     REACT_APP_NFT_KEY={YOUR NFT STORAGE KEY} // Used for NFT generation
     REACT_APP_RPC_URL={YOUR RPC NODE URL} // Used for blockchain network calls.
+    // Optional (for persistent non-IFPS storage)
+    REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
+    REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
 </pre>
 
 `yarn; yarn start`
@@ -56,4 +59,8 @@ The app should now be running on port 3000.
 * https://docs.chainstack.com/quickstart/create-a-project
 * https://ethglobal.notion.site/HackMoney-Info-Center-294c61659a7e48da926cca8d0d40588b
 * https://showcase.ethglobal.com/hackmoney2022/prizes
+* https://hackmd.io/@hackyguru/walletconnect
+* https://hardhat.org/tutorial/creating-a-new-hardhat-project.html
+* https://v2-docs.zksync.io/dev/guide/hello-world.html#prerequisites
+* https://v2-docs.zksync.io/dev/guide/hello-world.html#working-with-provider
 
