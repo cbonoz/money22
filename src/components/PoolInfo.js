@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Input, Statistic } from 'antd'
+import { Button, Input, Statistic, Row, Col } from 'antd'
 import {useParams} from "react-router-dom";
-import { formatMoney } from '../util';
+import { formatMoney, getExplorerUrl } from '../util';
 
 // Main pool info page
 
-export default function PoolInfo({}  ) {
+export default function PoolInfo({user, address}  ) {
     const [hasAccess, setHasAccess] = useState(false)
     const [balance, setBalance] = useState(1050)
     const [code, setCode] = useState()
@@ -32,8 +32,16 @@ export default function PoolInfo({}  ) {
 
 
   return (
-    <div>WorkPool: {poolId}
+    <div>WorkPool: {poolId}&nbsp;
+
+    Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
+
+    <Row>
+        <Col span={16}></Col>
+        <Col span={8}>
           <Statistic className='green'  title="Account Balance ($)" value={formatMoney(balance)} precision={2} />
+        </Col>
+    </Row>
 
     
     

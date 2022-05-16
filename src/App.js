@@ -92,7 +92,7 @@ function App() {
               <Route exact path="/" element={<About user={user} login={login}/>}/>
               <Route exact path="/create" element={<CreatePool user={user} address={user && user.get('ethAddress')}/>}/>
               <Route exact path="/discover" element={<FindPool user={user} />} />
-              <Route exact path="/pools/:poolId" element={<PoolInfo/>}/>
+              <Route exact path="/pool/:poolId" element={<PoolInfo user={user} address={user && user.get('ethAddress')}/>}/>
               {/* <Route exact path="/api" element={<Docs />} /> */}
               <Route exact path="/about" element={<About/>}/>
             </Routes>
