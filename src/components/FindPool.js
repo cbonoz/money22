@@ -3,22 +3,22 @@ import React, {useState} from 'react'
 import PoolInfo from './PoolInfo'
 
 export default function FindPool() {
-  const [poolId, setPoolId] = useState()
+  const [poolAddress, setPoolAddress] = useState()
   const [value, setValue] = useState()
     
   return (
     <div>
-      {!poolId && <div>
+      {!poolAddress && <div>
         <Input className='standard-input' type="text" value={value} onChange={e => setValue(e.target.value)}/>
-        <Button className='standard-btn' disabled={!value} type="primary" onClick={() => setPoolId(value)}> 
+        <Button className='standard-btn' disabled={!value} type="primary" onClick={() => setPoolAddress(value)}> 
           Continue
         </Button>
         
       </div>}
 
 
-      {poolId && <div>
-        <PoolInfo poolId={poolId}/>
+      {poolAddress && <div>
+        <PoolInfo poolId={poolAddress}/>
       </div>}
 
 

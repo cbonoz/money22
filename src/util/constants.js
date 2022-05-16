@@ -16,7 +16,7 @@ export const MORALIS_SERVER = process.env.REACT_APP_MORALIS_SERVER
 export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID
 
 export const EXAMPLE_FORM = {}
-export const LOGIN_MESSAGE = "WorldPools would like access to your account "
+export const LOGIN_MESSAGE = "WorldPools would like connect to your wallet."
 
 export const CHAIN_OPTIONS = {
     80001: {

@@ -1,39 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Button, Input, Row, Col, Radio, Steps, Result } from "antd";
-import TextArea from "antd/lib/input/TextArea";
+import React, { useState, useEffect, useMemo } from "react";
+import { Button, Input, Row, Col, Radio, Steps, Result, Checkbox } from "antd";
 import { signatureUrl, ipfsUrl, getExplorerUrl } from "../util";
 import { EXAMPLE_FORM } from "../util/constants";
-import { ethers } from "ethers";
-import { validAddress, deployContract } from "../contract/deploy";
-import { enableWorld, initWorld } from "../util/worldcoin";
+import { deployContract } from "../contract/deploy";
+import FindCompany from "./FindCompany";
+import { WorldIDComponent } from "./WorldIDComponent";
 
 const { Step } = Steps;
 
-function CreatePool(props) {
+function CreatePool({address, user}) {
   const [data, setData] = useState({ ...EXAMPLE_FORM });
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
 
   const updateData = (key, value) => {
+    console.log('update', data)
     setData({ ...data, [key]: value });
   };
 
-  const init = async () => {
-    await enableWorld()
-    await initWorld()
-  }
+  const onChange = e => {
+    console.log('checked = ', e.target.checked);
+    updateData('worldId', e.target.checked);
+  };
 
-  useEffect(() => {
-    init()
-  }, [])
+  const actionId = `${data.domain}-${data.title}`
 
   const isValid = (data) => {
     return (
       data.title &&
-      data.description &&
-      data.files.length > 0 &&
-      validAddress(data.signerAddress)
+      data.code &&
+      data.domain
     );
   };
   const isValidData = isValid(data);
@@ -75,64 +72,72 @@ function CreatePool(props) {
       // Result rendered after successful doc upload + contract creation.
       setResult(res);
       try {
-        // await postPacket(res.workpool request);
+        // await postPacket(res.WorkPool);
       } catch (e) {
-        console.error("error posting workpool request", e);
+        console.error("error posting WorkPool", e);
       }
     } catch (e) {
-      console.error("error creating workpool request", e);
+      console.error("error creating WorkPool", e);
     } finally {
       setLoading(false);
     }
   };
 
-  const getStep = () => {
+  const activeStep = useMemo(() => {
     if (!!result) {
       return 2;
     } else if (isValidData) {
       return 1;
     }
     return 0;
-  };
+  }, [result, isValidData]);
 
   return (
     <div>
       <Row>
         <Col span={16}>
           <div className="create-form white boxed">
-            <h2>Create new workpool request</h2>
-            <div id="world-id-container"></div>
+            <h2>Create new WorkPool</h2>
 
             <br />
 
-            <h3 className="vertical-margin">workpool request title:</h3>
+            <FindCompany update={(d) => updateData('domain', d)}/>
+
+            <h3 className="vertical-margin">WorkPool title:</h3>
             <Input
-              placeholder="Title of the workpool request"
+              placeholder="Title of the WorkPool"
               value={data.title}
               prefix="Title:"
+            className="standard-input"
               onChange={(e) => updateData("title", e.target.value)}
             />
-            <TextArea
-              aria-label="Description"
-              onChange={(e) => updateData("description", e.target.value)}
-              placeholder="Description of the workpool request"
-              prefix="Description"
-              value={data.description}
+            <Input
+              aria-label="Access Code"
+              onChange={(e) => updateData("code", e.target.value)}
+              placeholder="Enter access code for the pool"
+              prefix="Access code:"
+            className="standard-input"
+              value={data.code}
             />
 
-            <h3 className="vertical-margin">Enter signer address:</h3>
-            <p>
-              In order to sign or agree to the documents, the viewer or
-              potential signer of the documents must prove ownership of a
-              particular address
-            </p>
             <Input
-              placeholder="Wallet address of signer"
-              value={data.signerAddress}
-              prefix="Signer Address:"
-              onChange={(e) => updateData("signerAddress", e.target.value)}
+            className="standard-input"
+              aria-label="Your address:"
+              placeholder="Enter access code for the pool"
+              disabled={true}
+              prefix="Your address"
+              value={address}
             />
             <br />
+            <br />
+
+            <Checkbox disabled={false} checked={data.worldId} onChange={onChange}>
+              Enable ID Verification
+            </Checkbox>
+            <br/>
+
+            <WorldIDComponent enabled={data.worldId} signal={address} actionId={actionId} setProof={p => updateData('proof', p)}/>
+            {data.worldId && <p>To reduce fraudulent or fake pools, WorldID can validate that the given user can only create a pool for the given organization once.</p>}
 
             <Button
               type="primary"
@@ -141,7 +146,7 @@ function CreatePool(props) {
               disabled={loading} // || !isValidData}
               loading={loading}
             >
-              Create workpool request!
+              Create!
             </Button>
             {!error && !result && loading && (
               <span>&nbsp;Note this may take a few moments.</span>
@@ -185,16 +190,16 @@ function CreatePool(props) {
               className="standard-margin"
               direction="vertical"
               size="small"
-              current={getStep()}
+              current={activeStep}
             >
               <Step title="Fill in fields" description="Enter required data." />
               <Step
-                title="Create workpool request"
-                description="Requires authorizing a create workpool request operation."
+                title="Create WorkPool"
+                description="Create the initial contract and shareable url for peers to join"
               />
               <Step
-                title="Wait for workpool"
-                description="Your workpool request will be live for others to view and submit workpool."
+                title="Invite others to join"
+                description="Your WorkPool will be live for you and others to view and invest together."
               />
             </Steps>
           </div>

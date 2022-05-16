@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Layout, Menu } from "antd";
-import { APP_NAME } from "./util/constants";
+import { APP_NAME, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
 import { Routes, Route, Link, Router } from "react-router-dom";
 import About from "./components/About";
 
@@ -11,31 +11,58 @@ import { useMoralis } from "react-moralis";
 
 import FindPool from './components/FindPool';
 import CreatePool from './components/CreatePool';
-import { initWeb3, web3Provider } from './util/web3util';
+// import { initWeb3, web3Provider } from './util/web3util';
 import PoolInfo from './components/PoolInfo';
+import Moralis from "moralis";
 
 const { Header, Footer, Sider, Content } = Layout;
 
+
 function App() {
-  const { authenticate, isAuthenticated, user, logout  } = useMoralis();
-  // const [user, setUser] = useState()
+  // const { authenticate, isAuthenticated, user, logout  } = useMoralis();
+  const [user, setUser] = useState()
   console.log('user', user)
 
-  const login = async () => {
-    let u
-    try {
-      u = await authenticate({ provider: "metamask", chainId: 5 })
-    } catch (e) {
-      console.error('err logging in', e)
-    }
-    console.log('login', u)
-    // const p = await initWeb3()
-    // setUser(p)
-
-    // const accounts = await web3Provider.listAccounts()
-    // const balance = await web3Provider.getBalance()
-    // console.log('web3', accounts, balance)
+  const logout = async () => {
+    await Moralis.User.logOut();
+    setUser(undefined)
   }
+
+  useEffect(() => {
+    const body = {serverUrl: MORALIS_SERVER, appId: MORALIS_ID}
+    console.log('init', body)
+    Moralis.start(body)
+      let u = Moralis.User.current() 
+      if (u) {
+        setUser(u)
+        console.log('existing user', u, u.get('ethAddress'))
+      }
+  }, [])
+
+  async function login() {
+    let u = Moralis.User.current();
+
+    if (!u) {
+     try {
+        u = await Moralis.authenticate({ provider: 'walletconnect', chainId: 5 })
+        console.log('user', u, u.get('ethAddress'))
+        setUser(u)
+     } catch(error) {
+       console.log('err', error)
+     }
+    }
+  }
+
+  // const login = async () => {
+  //   if (!isAuthenticated) {
+  //     try {
+  //       const u = await authenticate({ provider: "walletconnect", chainId: 5 })
+  //       // console.log('address', u.get("ethAddress"));
+  //     } catch (error) {
+  //       console.error('err', error)
+  //     };
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -56,14 +83,14 @@ function App() {
               {user && <Link to="/discover">
                 <Menu.Item key="3">Find Pool</Menu.Item>
               </Link>}
-              {user && <span>Active: {user.accounts && `${user.get('address')}**`}&nbsp;<a onClick={() => logout()}>Logout</a></span>}
+              {user && <span>Active: {user.get('ethAddress').substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>}
           </Menu>
         </Header>
         <Content>
           <div className="container">
             <Routes>
               <Route exact path="/" element={<About user={user} login={login}/>}/>
-              <Route exact path="/create" element={<CreatePool user={user}/>}/>
+              <Route exact path="/create" element={<CreatePool user={user} address={user && user.get('ethAddress')}/>}/>
               <Route exact path="/discover" element={<FindPool user={user} />} />
               <Route exact path="/pools/:poolId" element={<PoolInfo/>}/>
               {/* <Route exact path="/api" element={<Docs />} /> */}

@@ -21,7 +21,7 @@ export async function deployContract(hre) {
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = {} // new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("Greeter");
+  const artifact = await deployer.loadArtifact("WorkPool");
 
   // Deposit some funds to L2 in order to be able to perform L2 transactions.
   const depositAmount = ethers.utils.parseEther("0.001");

@@ -7,17 +7,19 @@ import { Typography, Divider } from "antd";
 import logo from "./../assets/logo_3_2.png";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { APP_DESC, APP_NAME } from "../util/constants";
+import { useNavigate } from "react-router";
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { Step } = Steps;
 
 const REASONS = [
-  "Create an investing pool with your friends and coworkers",
-  "Receive interest as you increase your investment stake",
+  "Create a investing pool with your friends and colleagues",
+  "Receive passive interest as you increase your investment stake",
   "Earn NFT rewards as you hit investment milestones",
 ];
 
 function About({user, login}) {
+  const navigate = useNavigate()
   return (
     <div className="content about-page">
       <Row>
@@ -44,7 +46,10 @@ function About({user, login}) {
       </Row>
 
       <Row>
-        <Button type="primary" size="large" onClick={login}>Login</Button>
+        <Button type="primary" size="large" onClick={user ? navigate('/create') : login}>{user ? 'Create Pool' : 'Login'}</Button>
+        {user && <span>&nbsp;
+        <Button type="secondary" size="large" onClick={() => navigate('/discover')}>Find Pool</Button>
+          </span>}
       </Row>
 
       <p></p>

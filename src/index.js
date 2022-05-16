@@ -11,16 +11,15 @@ import { MoralisProvider } from "react-moralis";
 // https://hackmd.io/@hackyguru/walletconnect
 
 const moralisEnabled = MORALIS_ID && MORALIS_SERVER
+console.log(MORALIS_SERVER, MORALIS_ID)
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-        {moralisEnabled ? 
-          <MoralisProvider serverUrl={MORALIS_SERVER} appId={MORALIS_SERVER}>
-            <App/>
-            </MoralisProvider>
-        : <App />}
-    </BrowserRouter>
+      {/* <MoralisProvider serverUrl={MORALIS_SERVER} appId={MORALIS_SERVER}> */}
+        <BrowserRouter>
+          <App/>
+        </BrowserRouter>
+      {/* </MoralisProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
