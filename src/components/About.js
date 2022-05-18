@@ -13,8 +13,8 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { Step } = Steps;
 
 const REASONS = [
-  "Create a investing pool with your friends and colleagues",
-  "Receive passive interest as you increase your investment stake",
+  "Create a passive investing pool with your friends and colleagues",
+  "Receive interest as you build and increase your investment stake",
   "Earn NFT rewards as you hit investment milestones",
 ];
 

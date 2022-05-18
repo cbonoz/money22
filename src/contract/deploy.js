@@ -1,5 +1,6 @@
 import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
+import { CONTRACT } from "./metadata";
 // import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 
@@ -12,8 +13,39 @@ export const validAddress = (addr) => {
   }
 };
 
+const getSigner = async () => {
+  let signer;
+  await window.ethereum.enable();
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  signer = provider.getSigner();
+  return signer;
+};
+
+
+// https://dapp-world.com/smartbook/how-to-use-ethers-with-polygon-k5Hn
+export async function deployContract(company, name) {
+  const signer = await getSigner();
+
+  //   https://dev.to/yosi/deploy-a-smart-contract-with-ethersjs-28no
+
+  // Create an instance of a Contract Factory
+  const factory = new ethers.ContractFactory(
+    CONTRACT.abi,
+    CONTRACT.bytecode,
+    signer
+  );
+
+  // const validatedAddress = ethers.utils.getAddress(signerAddress);
+
+  // Start deployment, returning a promise that resolves to a contract object
+  const contract = await factory.deploy(company, name);
+  await contract.deployed();
+  console.log("Contract deployed to address:", contract.address);
+  return contract;
+}
+
 // An example of a deploy script that will deploy and call a simple contract.
-export async function deployContract(hre) {
+export async function deployZkContract(hre) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.

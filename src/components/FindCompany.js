@@ -21,14 +21,14 @@ export default function FindCompany({heading="Select company:", update}) {
         {!confirmed && <div>
           {heading && <h3>{heading}</h3>}
           <Search
-      placeholder="Enter company domain"
-      value={value}
-      onChange={e => setValue(e.target.value)}
-      allowClear
-      enterButton="Search"
-      size="large"
-      onSearch={() => setDomain(value)}
-    />
+            placeholder="Enter company domain"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={() => setDomain(value)}
+          />
         </div>}
 
         {domain && <div>

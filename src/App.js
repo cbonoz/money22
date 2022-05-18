@@ -81,7 +81,7 @@ function App() {
                 <Menu.Item key="2">Create Pool</Menu.Item>
               </Link>}
               {user && <Link to="/discover">
-                <Menu.Item key="3">Find Pool</Menu.Item>
+                <Menu.Item key="3">Access Pool</Menu.Item>
               </Link>}
               {user && <span>Active: {user.get('ethAddress').substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>}
           </Menu>
@@ -99,11 +99,12 @@ function App() {
           </div>
         </Content>
         <Footer>
-          {APP_NAME} &copy;2022 - Built for the{" "}
+          {APP_NAME} &copy;2022 - 
+          {/* Built for the{" "}
           <a href="https://hackathon.money" target="_blank">
             HackMoney 2022
-          </a>
-          hackathon.
+          </a>&nbsp;
+          hackathon. */}
         </Footer>
       </Layout>
     </div>

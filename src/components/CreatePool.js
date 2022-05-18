@@ -97,18 +97,16 @@ function CreatePool({address, user}) {
       <Row>
         <Col span={16}>
           <div className="create-form white boxed">
-            <h2>Create new WorkPool</h2>
-
-            <br />
+            <h1>Create new WorkPool</h1>
 
             <FindCompany update={(d) => updateData('domain', d)}/>
 
-            <h3 className="vertical-margin">WorkPool title:</h3>
+            <h3 className="vertical-margin">General information</h3>
             <Input
               placeholder="Title of the WorkPool"
               value={data.title}
               prefix="Title:"
-            className="standard-input"
+              className="standard-input"
               onChange={(e) => updateData("title", e.target.value)}
             />
             <Input
@@ -116,7 +114,7 @@ function CreatePool({address, user}) {
               onChange={(e) => updateData("code", e.target.value)}
               placeholder="Enter access code for the pool"
               prefix="Access code:"
-            className="standard-input"
+              className="standard-input"
               value={data.code}
             />
 
@@ -135,9 +133,12 @@ function CreatePool({address, user}) {
               Enable ID Verification
             </Checkbox>
             <br/>
+            <br />
 
             <WorldIDComponent enabled={data.worldId} signal={address} actionId={actionId} setProof={p => updateData('proof', p)}/>
+            <br />
             {data.worldId && <p>To reduce fraudulent or fake pools, WorldID can validate that the given user can only create a pool for the given organization once.</p>}
+
 
             <Button
               type="primary"

@@ -40,7 +40,7 @@ export const CHAIN_OPTIONS = {
 export const IPFS_BASE_URL = "https://ipfs.moralis.io:2053/ipfs";
 
 export const REWARD_IMAGES = {
-    1000:'',
-    5000:'',
-    10000:'',
+    1000:'https://image.shutterstock.com/image-vector/1000-dollars-sign-usd-badge-260nw-1892401765.jpg',
+    5000:'https://icon-library.com/images/google-icon-image/google-icon-image-10.jpg',
+    10000:'https://www.uwindsor.ca/cces/sites/uwindsor.ca.cces/files/salary_icon2.png',
 }

@@ -3,11 +3,13 @@ WorkPools
 ---
 
 
-Invest in liquidity pools with your friends and colleagues. Earn badges as you reach investment milestones.
+Invest in passive yielding liquidity pools with your friends and colleagues. Earn badges as you reach investment milestones.
 
 ### Motivation
 
 It's common to create small crypto social groups at work, but often that's where it ends. With WorkPools, you can set up custom investment pools with your friends and strategize the best ways to earn return on your crypto assets together.
+
+WorkPools reduces intimidation by creating a group space for coworkers/friends to learn about yield pools and invest together.
 
 <!--
 Demo flow:
@@ -21,9 +23,8 @@ Demo flow:
 1. Login with web3 provider
 2. Select company, worldcoin verifies if a single transaction was made by this individual for this company, or if the pool already exists.
 3. Create the pool / invite others by sharing a unique link to the pool. 
-4. Pool management
-5. View rewards on the pool.
-6. Discover pools by category.
+4. View rewards on the pool.
+5. Discover pools by category.
 
 
 ### Sponsors used:

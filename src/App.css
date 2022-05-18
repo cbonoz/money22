@@ -30,6 +30,11 @@
   margin-right: 5px;
 }
 
+.mint-image {
+  width: 150px;
+  margin: 20px;
+}
+
 .display-hidden {
   display: none;
 }
