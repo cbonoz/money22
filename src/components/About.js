@@ -4,7 +4,7 @@ import { Row, Col } from "antd";
 import { Typography, Divider } from "antd";
 
 
-import logo from "./../assets/logo_3_2.png";
+import logo from "./../assets/humans.png";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { APP_DESC, APP_NAME } from "../util/constants";
 import { useNavigate } from "react-router";
@@ -21,13 +21,12 @@ const REASONS = [
 function About({user, login}) {
   const navigate = useNavigate()
   return (
-    <div className="content about-page">
+    <div className="content about-page hero-section">
       <Row>
-        <Col span={12}>
-          <br />
+        <Col span={11}>
           <Title>{APP_NAME}</Title>
-          <hr />
           <h3>{APP_DESC}</h3>
+          <hr/>
           <br />
 
           {REASONS.map((r, i) => {
@@ -40,15 +39,16 @@ function About({user, login}) {
             );
           })}
         </Col>
-        <Col span={12}>
-          <img src={logo} />
+        <Col span={13}>
+          <img src={logo} className='hero-image'/>
         </Col>
       </Row>
 
       <Row>
-        <Button type="primary" size="large" onClick={user ? navigate('/create') : login}>{user ? 'Create Pool' : 'Login'}</Button>
+        <br/>
+        <Button className="standard-btn" type="primary" size="large" onClick={user ? navigate('/create') : login}>{user ? 'Create Pool' : 'Connect wallet'}</Button>
         {user && <span>&nbsp;
-        <Button type="secondary" size="large" onClick={() => navigate('/discover')}>Find Pool</Button>
+        <Button className="standard-btn" type="secondary" size="large" onClick={() => navigate('/discover')}>Find Pool</Button>
           </span>}
       </Row>
 

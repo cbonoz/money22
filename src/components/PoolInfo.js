@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import { formatMoney, getExplorerUrl } from '../util';
 import MintButton from './MintButton';
 import InvestmentCard from './cards/InvestmentCard';
+import Chat from './Chat';
 
 const { TabPane } = Tabs;
 
@@ -25,6 +26,7 @@ export default function PoolInfo({user, address}  ) {
     }
 
 
+
     if (!hasAccess) {
         return <div>
             <h3>Enter pool access code</h3>
@@ -36,7 +38,6 @@ export default function PoolInfo({user, address}  ) {
             </Button>
         </div>
     }
-
 
     return (
     <div>
@@ -57,8 +58,12 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                     <MintButton balance={balance} rewardBalance={5000}/>
                     <MintButton balance={balance} rewardBalance={10000}/>
                 </TabPane>
-                <TabPane tab="Calculator" key="3">
+                {/* <TabPane tab="Calculator" key="3">
                     <h1>Interest Calculator</h1>
+                </TabPane> */}
+                <TabPane tab="Chat" key="3">
+                    <h1>Group chat</h1>
+                    <Chat address={address}/>
                 </TabPane>
    
                 <TabPane tab="Invite others" key="4">

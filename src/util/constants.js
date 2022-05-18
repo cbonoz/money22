@@ -1,5 +1,5 @@
 export const APP_NAME = 'WorkPools'
-export const APP_DESC = 'Invest with friends and coworkers on web3'
+export const APP_DESC = 'Create investment pools with friends and coworkers in fixed-income crypto assets.'
 
 const requireEnv = (k) => {
     const v = process.env[k]

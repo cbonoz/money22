@@ -8,6 +8,11 @@ export const ipfsUrl = (cid, fileName) => {
     }
     return url;
   };
+
+  export const renderDate = (ts) => {
+    const d = new Date(ts)
+    return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
+  }
   
   export const signatureUrl = (cid) => `${window.location.origin}/sign/${cid}`;
   

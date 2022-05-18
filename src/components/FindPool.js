@@ -11,7 +11,8 @@ export default function FindPool() {
   return (
     <div>
       {!poolAddress && <div>
-        <Input className='standard-input' type="text" value={value} onChange={e => setValue(e.target.value)}/>
+        <h1>Enter WorkPool name:</h1>
+        <Input prefix="Name:" className='standard-input' type="text" value={value} onChange={e => setValue(e.target.value)}/>
         <Button className='standard-btn' disabled={!value} type="primary" onClick={() => navigate('/pool/' + value)}> 
           Continue
         </Button>

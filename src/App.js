@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Layout, Menu } from "antd";
+import { Button, Layout, Menu } from "antd";
 import { APP_NAME, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
 import { Routes, Route, Link, Router } from "react-router-dom";
 import About from "./components/About";
@@ -27,6 +27,12 @@ function App() {
     await Moralis.User.logOut();
     setUser(undefined)
   }
+
+  // useEffect(() => {
+  //    if (user) {
+
+  //    }
+  // }, [user])
 
   useEffect(() => {
     const body = {serverUrl: MORALIS_SERVER, appId: MORALIS_ID}
@@ -77,6 +83,9 @@ function App() {
             {!user && <Link to="/">
               <Menu.Item key="1">Get Started</Menu.Item>
             </Link>}
+            {!user && <span>
+              <Button  type="secondary" onClick={login}>Connect wallet</Button>
+            </span>}
             {user && <Link to="/create">
                 <Menu.Item key="2">Create Pool</Menu.Item>
               </Link>}
