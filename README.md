@@ -1,4 +1,9 @@
 
+<p align='center'>
+    <img src="./img/logo.png" width=400/>
+</p>
+<br/>
+
 WorkPools
 ---
 
@@ -54,13 +59,13 @@ Define the following environment variables:
 
 The app should now be running on port 3000.
 
-### Screenshots
+## Screenshots
 
-Home page
+### Home page
 <img src="./img/home.png" width=800/>
-Creating a new WorkPool
+### Creating a new WorkPool
 <img src="./img/create.png" width=800/>
-WorkPool dashboard / investment management
+### WorkPool dashboard / investment management
 <img src="./img/dashboard.png" width=800/>
 
 ### Useful links
