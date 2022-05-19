@@ -4,7 +4,8 @@ import { Row, Col } from "antd";
 import { Typography, Divider } from "antd";
 
 
-import logo from "./../assets/humans.png";
+import hero from "./../assets/humans.png";
+import logo from "./../assets/logo.png";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { APP_DESC, APP_NAME } from "../util/constants";
 import { useNavigate } from "react-router";
@@ -24,7 +25,8 @@ function About({user, login}) {
     <div className="content about-page hero-section">
       <Row>
         <Col span={11}>
-          <Title>{APP_NAME}</Title>
+          {/* <Title>{APP_NAME}</Title> */}
+          <img src={logo} className='hero-title'/>
           <h3>{APP_DESC}</h3>
           <hr/>
           <br />
@@ -40,7 +42,7 @@ function About({user, login}) {
           })}
         </Col>
         <Col span={13}>
-          <img src={logo} className='hero-image'/>
+          <img src={hero} className='hero-image'/>
         </Col>
       </Row>
 

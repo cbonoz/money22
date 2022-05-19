@@ -136,6 +136,11 @@
   color: green;
 }
 
+.hero-title {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
 .hero-image {
   width: 100%;
   max-width: 500px;

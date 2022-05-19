@@ -54,6 +54,15 @@ Define the following environment variables:
 
 The app should now be running on port 3000.
 
+### Screenshots
+
+Home page
+<img src="./img/home.png" width=800/>
+Creating a new WorkPool
+<img src="./img/create.png" width=800/>
+WorkPool dashboard / investment management
+<img src="./img/dashboard.png" width=800/>
+
 ### Useful links
 *  https://nft.storage/
 * https://docs.walletconnect.com/quick-start/dapps/web3-provider
