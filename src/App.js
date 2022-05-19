@@ -23,6 +23,7 @@ function App() {
   console.log('user', user)
 
   const logout = async () => {
+    console.log('logout')
     await Moralis.User.logOut();
     setUser(undefined)
   }
@@ -49,6 +50,7 @@ function App() {
 
     if (!u) {
      try {
+       console.log('authenticate')
         u = await Moralis.authenticate({ provider: 'walletconnect', chainId: 42 })
         console.log('user', u, u.get('ethAddress'))
         setUser(u)
@@ -80,7 +82,7 @@ function App() {
               {user && <Link to="/discover">
                 <Menu.Item key="3">Access Pool</Menu.Item>
               </Link>}
-              {user && <span>Active: {user.get('ethAddress').substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>}
+              {user && <span>Active: {user && user.get('ethAddress').substr(0,6)}**&nbsp;<a onClick={() => logout()}>Logout</a></span>}
           </Menu>
         </Header>
         <Content>

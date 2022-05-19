@@ -52,7 +52,7 @@ function CreatePool({address, user}) {
 
     try {
       // 1) deploy base contract with metadata,
-      const contract = await deployContract(data.title, data.signerAddress);
+      const contract = await deployContract(data.domain, data.title, data.code);
       res["contract"] = contract;
 
       // 2) Upload files to moralis/ipfs,

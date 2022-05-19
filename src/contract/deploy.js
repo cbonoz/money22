@@ -23,7 +23,7 @@ export const getSigner = async () => {
 
 
 // https://dapp-world.com/smartbook/how-to-use-ethers-with-polygon-k5Hn
-export async function deployContract(company, name) {
+export async function deployContract(company, name, code) {
   const signer = await getSigner();
 
   //   https://dev.to/yosi/deploy-a-smart-contract-with-ethersjs-28no
@@ -38,7 +38,8 @@ export async function deployContract(company, name) {
   // const validatedAddress = ethers.utils.getAddress(signerAddress);
 
   // Start deployment, returning a promise that resolves to a contract object
-  const contract = await factory.deploy(company, name);
+  console.log('deploy', company, name, code)
+  const contract = await factory.deploy(company, name, code);
   await contract.deployed();
   console.log("Contract deployed to address:", contract.address);
   return contract;
@@ -74,3 +75,13 @@ export async function deployZkContract(hre) {
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
+export const getPoolName = async (address) => {
+  const signer = await getSigner();
+  const c = new ethers.Contract(
+    address,
+    CONTRACT.abi,
+    signer
+  );
+  const result = await c.getName();
+  return result;
+};
