@@ -65,8 +65,10 @@ The app should now be running on port 3000.
 
 ### Home page
 <img src="./img/home.png" width=800/>
+
 ### Creating a new WorkPool
 <img src="./img/create.png" width=800/>
+
 ### WorkPool dashboard / investment management
 <img src="./img/dashboard.png" width=800/>
 
