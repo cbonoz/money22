@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { Button, Layout, Menu } from "antd";
-import { APP_NAME, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
+import { ACTIVE_CHAIN_ID, APP_NAME, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
 import { Routes, Route, Link, Router } from "react-router-dom";
 import About from "./components/About";
 
 import logo from "./assets/logo.png";
 import "antd/dist/antd.min.css";
 import "./App.css";
-import { useMoralis } from "react-moralis";
 
 import FindPool from './components/FindPool';
 import CreatePool from './components/CreatePool';
@@ -50,7 +49,7 @@ function App() {
 
     if (!u) {
      try {
-        u = await Moralis.authenticate({ provider: 'walletconnect', chainId: 5 })
+        u = await Moralis.authenticate({ provider: 'walletconnect', chainId: 42 })
         console.log('user', u, u.get('ethAddress'))
         setUser(u)
      } catch(error) {
@@ -58,17 +57,6 @@ function App() {
      }
     }
   }
-
-  // const login = async () => {
-  //   if (!isAuthenticated) {
-  //     try {
-  //       const u = await authenticate({ provider: "walletconnect", chainId: 5 })
-  //       // console.log('address', u.get("ethAddress"));
-  //     } catch (error) {
-  //       console.error('err', error)
-  //     };
-  //   }
-  // }
 
   return (
     <div className="App">

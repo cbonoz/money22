@@ -35,7 +35,7 @@ export const CHAIN_OPTIONS = {
    5: { name: "goerli", url: "https://goerli.etherscan.io/", addressUrl: "https://goerli.etherscan.io/address/", id: 5 },
 }
   
-  export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["5"];
+  export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["42"];
 
 export const IPFS_BASE_URL = "https://ipfs.moralis.io:2053/ipfs";
 
@@ -44,3 +44,10 @@ export const REWARD_IMAGES = {
     5000:'https://icon-library.com/images/google-icon-image/google-icon-image-10.jpg',
     10000:'https://www.uwindsor.ca/cces/sites/uwindsor.ca.cces/files/salary_icon2.png',
 }
+
+export const PIE_DATA = [["Tempus", 400], ["Voltz", 625]]
+
+export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
+  (previousValue, currentValue) => previousValue + currentValue,
+  0
+);

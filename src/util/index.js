@@ -14,7 +14,7 @@ export const ipfsUrl = (cid, fileName) => {
     return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
   }
   
-  export const signatureUrl = (cid) => `${window.location.origin}/sign/${cid}`;
+  export const poolUrl = (cid) => `${window.location.origin}/pool/${cid}`;
   
   export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

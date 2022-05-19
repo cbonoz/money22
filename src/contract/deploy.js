@@ -13,7 +13,7 @@ export const validAddress = (addr) => {
   }
 };
 
-const getSigner = async () => {
+export const getSigner = async () => {
   let signer;
   await window.ethereum.enable();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
