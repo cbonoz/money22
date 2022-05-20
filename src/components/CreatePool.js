@@ -139,7 +139,7 @@ function CreatePool({address, user}) {
 
             <WorldIDComponent enabled={data.worldId} signal={address} actionId={actionId} setProof={p => updateData('proof', p)}/>
             <br />
-            {data.worldId && <p>To reduce fraudulent or fake pools, WorldID can validate that the given user can only create a pool for the given organization once.</p>}
+            {data.worldId && <p>Or authenticate <a href="https://mock-app.id.worldcoin.org/" target="_blank">here</a>. To reduce fraudulent or fake pools, WorldID can validate that the given user can only create a pool for the given organization once.</p>}
 
 
             <Button

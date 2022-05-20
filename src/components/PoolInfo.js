@@ -21,23 +21,10 @@ export default function PoolInfo({user, address}  ) {
     const [hasAccess, setHasAccess] = useState(true)
     const [balance, setBalance] = useState(INITIAL_BALANCE)
     const [code, setCode] = useState()
+    const [amount, setAmount] = useState()
     const [data, setData] = useState({})
 
-    const mintVoltz = async () => {
-        const signer = await getSigner()
-        // const amm = AMM(signer)
-
-        // const args = {
-        //     fixedLow: 0,
-        //     fixedHigh: 1,
-        //     notional: 1,
-        //     margin: 0,
-        //     validationOnly: false,
-        //   }
-
-        // const res = await amm.mint(args)
-        // console.log('result', res)
-    }
+    // TODO: add aave supply action.
 
     const callback = () => {}
     
@@ -66,13 +53,13 @@ export default function PoolInfo({user, address}  ) {
         <Row>
             <Col span={24}>
                         <h1>WorkPool: {poolId}</h1>
-                        <p>Select fixed-income and stable investments.</p>
 
 Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
 
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Dashboard" key="1">
                     <h1>Manage Investments</h1>
+                    <p>Select fixed-income and other lower-volatility investments.</p>
                     <Statistic className='green' title="Account Balance ($)" value={formatMoney(balance)} precision={2} />
                     <PieChart prefix="$" thousands="," precision={2} round={2} donut={true} data={PIE_DATA}  label="Value" legend={true}  width="100%" height="400px" />
                     <br/>
@@ -82,13 +69,14 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                         <iframe src={"https://testnet.tempus.finance/"}  width="100%" height="600"/>
 
                     </Panel>
-                    <Panel header="Voltz" width="100%" key="1">
-                        <Button onClick={mintVoltz}>Mint</Button>
+                    <Panel header="Aave" width="100%" key="1">
+                        <Input prefix={'Amount to deposit'} value={amount} onChange={e => setAmount(e.target.value)}/>
                     </Panel>
                 </Collapse>
                 </TabPane>
                 <TabPane tab="Badges" key="2">
                     <h3>Unlock collectible badges here as you hit key investment milestones.</h3>
+                    <p>You can mint as many of these as you like once you hit the threshold.</p>
                     <MintButton balance={balance} rewardBalance={1000}/>
                     <MintButton balance={balance} rewardBalance={5000}/>
                     <MintButton balance={balance} rewardBalance={10000}/>
@@ -98,6 +86,7 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                 </TabPane> */}
                 <TabPane tab="Chat" key="3">
                     <h1>Group chat</h1>
+                    <p>Chat with other individuals that have access to this pool.</p>
                     <Chat address={address}/>
                 </TabPane>
    

@@ -32,9 +32,9 @@ export default function FindCompany({heading="Select company:", update}) {
         </div>}
 
         {domain && <div>
-          <img src={clearbitUrl(domain)} className='company-image'/>
+          <img src={clearbitUrl(domain)} className='company-image' alt="Company Image"/>
           {confirmed && <div>Company: <b>{domain}</b></div>}
-          {!confirmed && <div><p>Is this your company logo?
+          {!confirmed && <div><p>Is this your company logo? Will be blank if no logo was found.
           </p>
             <Button className='standard-btn' type="default" onClick={() => next(domain)}>Yes</Button>
           </div>}

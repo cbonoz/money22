@@ -2,13 +2,17 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "usingtellor/contracts/UsingTellor.sol";
 
-contract WorkPool is Ownable {
+contract WorkPool is Ownable, UsingTellor {
 
     string private company;
     string private name;
 
     string private code;
+
+    bytes memory _currentEthPrice;
+
 
     constructor(string memory _company, string memory _name, string memory _code) {
         name = _name;

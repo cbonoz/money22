@@ -21,6 +21,7 @@ export const LOGIN_MESSAGE = "WorldPools would like connect to your wallet."
 export const CHAIN_OPTIONS = {
     80001: {
       name: "Mumbai",
+      host: `https://rpc-mumbai.matic.today`,
       url: "https://mumbai.polygonscan.com/",
       id: 80001,
     },
@@ -35,7 +36,7 @@ export const CHAIN_OPTIONS = {
    5: { name: "goerli", url: "https://goerli.etherscan.io/", addressUrl: "https://goerli.etherscan.io/address/", id: 5 },
 }
   
-  export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["42"];
+  export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["80001"];
 
 export const IPFS_BASE_URL = "https://ipfs.moralis.io:2053/ipfs";
 
@@ -45,7 +46,7 @@ export const REWARD_IMAGES = {
     10000:'https://www.uwindsor.ca/cces/sites/uwindsor.ca.cces/files/salary_icon2.png',
 }
 
-export const PIE_DATA = [["Tempus", 400], ["Voltz", 625]]
+export const PIE_DATA = [["Tempus", 400], ["Aave", 625]]
 
 export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
   (previousValue, currentValue) => previousValue + currentValue,

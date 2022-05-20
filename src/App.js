@@ -7,6 +7,7 @@ import About from "./components/About";
 import logo from "./assets/logo.png";
 import "antd/dist/antd.min.css";
 import "./App.css";
+import {web3Provider} from './contract/deploy'
 
 import FindPool from './components/FindPool';
 import CreatePool from './components/CreatePool';
@@ -15,7 +16,7 @@ import PoolInfo from './components/PoolInfo';
 import Moralis from "moralis";
 
 const { Header, Footer, Sider, Content } = Layout;
-
+// const MORALIS = false; // Enable for production backend storage.
 
 function App() {
   // const { authenticate, isAuthenticated, user, logout  } = useMoralis();
@@ -27,22 +28,16 @@ function App() {
     await Moralis.User.logOut();
     setUser(undefined)
   }
-
-  // useEffect(() => {
-  //    if (user) {
-
-  //    }
-  // }, [user])
-
+  
   useEffect(() => {
     const body = {serverUrl: MORALIS_SERVER, appId: MORALIS_ID}
-    console.log('init', body)
+    console.log('init moralis', body)
     Moralis.start(body)
-      let u = Moralis.User.current() 
-      if (u) {
-        setUser(u)
-        console.log('existing user', u, u.get('ethAddress'))
-      }
+    let u = Moralis.User.current() 
+    if (u) {
+      setUser(u)
+      console.log('existing user', u, u.get('ethAddress'))
+    }
   }, [])
 
   async function login() {
