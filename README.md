@@ -11,6 +11,8 @@ WorkPools
 
 Invest in passive yielding liquidity pools with your friends and colleagues. Earn badges as you reach investment milestones.
 
+Pitch Deck: https://docs.google.com/presentation/d/1DpN8Aos2-_2VMGf9A4Bu4mOEFnyeR_77Zr2KYqiQFuo/edit?usp=sharing
+
 ### Motivation
 
 It's common to create small crypto social groups at work, but often that's where it ends. With WorkPools, you can set up custom investment pools with your friends and strategize the best ways to earn return on your crypto assets - without assuming the generally high volatility and risk associated with active trading.
