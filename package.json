@@ -29,6 +29,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.1",
+    "reflect-metadata": "^0.1.13",
     "web-vitals": "^2.1.4",
     "web3": "^1.7.3",
     "zksync-web3": "^0.4.0"

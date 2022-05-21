@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Button, Tabs, Input, Statistic, Card, Row, Col, Collapse } from 'antd'
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate, useLocation} from "react-router-dom";
 import { formatMoney, getExplorerUrl } from '../util';
 import MintButton from './MintButton';
 import InvestmentCard from './cards/InvestmentCard';
@@ -8,32 +8,57 @@ import Chat from './Chat';
 
 // Main pool info page
 import { PieChart } from 'react-chartkick'
-import { APP_DESC, INITIAL_BALANCE, PIE_DATA } from '../util/constants';
+import { AAVE_MUMBAI_RESERVE, APP_DESC, INITIAL_BALANCE, PIE_DATA } from '../util/constants';
 // import { AMM } from '@voltz-protocol/v1-sdk/dist/types/entities';
-import { getSigner } from '../contract/deploy';
+import { checkCode, getProvider, getSigner } from '../contract/deploy';
 
 import 'chartkick/chart.js'
+import { supply } from '../util/aave';
 
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
 
-export default function PoolInfo({user, address}  ) {
-    const [hasAccess, setHasAccess] = useState(true)
+export default function PoolInfo({address}  ) {
+    const [hasAccess, setHasAccess] = useState(false)
     const [balance, setBalance] = useState(INITIAL_BALANCE)
     const [code, setCode] = useState()
     const [amount, setAmount] = useState()
+    const [error, setError] = useState()
     const [data, setData] = useState({})
 
+    const navigate = useNavigate()
+
     // TODO: add aave supply action.
+
+    const deposit = async ()  => {
+        try {
+            await supply(await getProvider(), address, AAVE_MUMBAI_RESERVE, amount)
+        } catch (e) {
+            console.error('err', e)
+        }
+    }
 
     const callback = () => {}
     
     const { poolId } = useParams()
 
-    const checkCode = async () => {
+    const check = async () => {
+        setError()
+        try {
+            const res = await checkCode(poolId, code)
+            console.log('result', res)
+            setHasAccess(true)
+        } catch (e) {
+            setHasAccess(false)
+            console.error('err', e)
+            setError('Invalid code')
+        }
         // TODO: add access check logic.
-        setHasAccess(true)
     }
+
+    useEffect(() => {
+
+    })
 
 
     if (!hasAccess) {
@@ -42,9 +67,11 @@ export default function PoolInfo({user, address}  ) {
             <Input prefix="Enter code:" type="password"  className='standard-input' code={code} onChange={e => {
                 setCode(e.target.value)
             }}/>
-            <Button type="primary"  className='standard-btn' onClick={checkCode} disabled={!code}> 
+            <Button type="primary"  className='standard-btn' onClick={check} disabled={!code}> 
                 Access
             </Button>
+            <br/>
+            {error && <p className='error-text'>{error}</p>}
         </div>
     }
 
@@ -52,7 +79,7 @@ export default function PoolInfo({user, address}  ) {
     <div>
         <Row>
             <Col span={24}>
-                        <h1>WorkPool: {poolId}</h1>
+                        <h1>Welcome! WorkPool: <a href={getExplorerUrl(poolId)} target="_blank">{poolId.slice(0,6)}</a></h1>
 
 Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
 
@@ -61,16 +88,20 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                     <h1>Manage Investments</h1>
                     <p>Select fixed-income and other lower-volatility investments.</p>
                     <Statistic className='green' title="Account Balance ($)" value={formatMoney(balance)} precision={2} />
-                    <PieChart prefix="$" thousands="," precision={2} round={2} donut={true} data={PIE_DATA}  label="Value" legend={true}  width="100%" height="400px" />
+                    <PieChart prefix="$" thousands="," precision={2} donut={true} data={PIE_DATA}  label="Value" legend={true}  width="100%" height="400px" />
                     <br/>
                     <h3>Funds:</h3>
                     <Collapse accordion>
+                
+                    <Panel header="Aave" width="100%" key="2">
+                        <Input className='input' suffix="MATIC" prefix={'Amount to deposit'} value={amount} onChange={e => setAmount(e.target.value)}/>
+                        <br/>
+
+                        <Button className='standard-btn' type="primary" onClick={deposit}>Add funds</Button>
+                        {/* <Button className='standard-btn' onClick={withdraw}>Remove funds</Button> */}
+                    </Panel>
                     <Panel header="Tempus" width="100%" key="1">
                         <iframe src={"https://testnet.tempus.finance/"}  width="100%" height="600"/>
-
-                    </Panel>
-                    <Panel header="Aave" width="100%" key="1">
-                        <Input prefix={'Amount to deposit'} value={amount} onChange={e => setAmount(e.target.value)}/>
                     </Panel>
                 </Collapse>
                 </TabPane>

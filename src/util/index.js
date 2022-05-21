@@ -14,7 +14,13 @@ export const ipfsUrl = (cid, fileName) => {
     return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
   }
   
-  export const poolUrl = (cid) => `${window.location.origin}/pool/${cid}`;
+  export const poolUrl = (cid, code) =>  {
+    let url = `${window.location.origin}/pool/${cid}`;
+    if (code) {
+      url = `${url}?code=${code}`
+    }
+    return url
+  }
   
   export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

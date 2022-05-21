@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Button, Input, Row, Col, Radio, Steps, Result, Checkbox } from "antd";
 import { signatureUrl, ipfsUrl, getExplorerUrl, poolUrl } from "../util";
-import { EXAMPLE_FORM } from "../util/constants";
+import { EXAMPLE_FORM, MORALIS } from "../util/constants";
 import { deployContract } from "../contract/deploy";
 import FindCompany from "./FindCompany";
 import { WorldIDComponent } from "./WorldIDComponent";
@@ -9,7 +9,7 @@ import { savePool } from "../util/moral";
 
 const { Step } = Steps;
 
-function CreatePool({address, user}) {
+function CreatePool({address}) {
   const [data, setData] = useState({ ...EXAMPLE_FORM });
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -69,14 +69,16 @@ function CreatePool({address, user}) {
       res["cid"] = res.cid || contract.address
       // res["hash"] = metadata.hash();
       res["contractUrl"] = getExplorerUrl(contract.address);
-      res["poolUrl"] = poolUrl(contract.address)
+      res["poolUrl"] = poolUrl(contract.address, data.code)
 
       // Result rendered after successful doc upload + contract creation.
       setResult(res);
-      try {
-        await savePool(res)
-      } catch (e) {
-        console.error("error saving WorkPool", e);
+      if (MORALIS) {
+        try {
+          await savePool(res)
+        } catch (e) {
+          console.error("error saving WorkPool", e);
+        }
       }
     } catch (e) {
       console.error("error creating WorkPool", e);
@@ -162,7 +164,7 @@ function CreatePool({address, user}) {
                 <Result
                   status="success"
                   title="Successfully created WorkPool!"
-                  subTitle="It may take a moment for your contract to be confirmed."
+                  subTitle="View created contract and shareable url below"
                 />
                 {/* <a href={ipfsUrl(result.hash)} target="_blank">
                   View metadata
@@ -174,7 +176,7 @@ function CreatePool({address, user}) {
                 <br />
                 <br />
                 <p>
-                  Share this url with the potential signer:
+                  Share this url with your friends/colleagues.
                   <br />
                   <a href={result.poolUrl} target="_blank">
                     Open WorkPool url

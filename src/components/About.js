@@ -19,7 +19,7 @@ const REASONS = [
   "Earn NFT rewards as you hit investment milestones",
 ];
 
-function About({user, login}) {
+function About({address, login}) {
   const navigate = useNavigate()
   return (
     <div className="content about-page hero-section">
@@ -48,8 +48,8 @@ function About({user, login}) {
 
       <Row>
         <br/>
-        <Button className="standard-btn" type="primary" size="large" onClick={user ? navigate('/create') : login}>{user ? 'Create Pool' : 'Connect wallet'}</Button>
-        {user && <span>&nbsp;
+        <Button className="standard-btn" type="primary" size="large" onClick={address ? navigate('/create') : login}>{address ? 'Create Pool' : 'Connect wallet'}</Button>
+        {address && <span>&nbsp;
         <Button className="standard-btn" type="secondary" size="large" onClick={() => navigate('/discover')}>Find Pool</Button>
           </span>}
       </Row>

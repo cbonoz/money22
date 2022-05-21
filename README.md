@@ -13,6 +13,8 @@ Invest in passive yielding liquidity pools with your friends and colleagues. Ear
 
 Pitch Deck: https://docs.google.com/presentation/d/1DpN8Aos2-_2VMGf9A4Bu4mOEFnyeR_77Zr2KYqiQFuo/edit?usp=sharing
 
+<b>Note this project is a hackathon proof of concept and would require additional work in order to be production ready</b>
+
 ### Motivation
 
 It's common to create small crypto social groups at work, but often that's where it ends. With WorkPools, you can set up custom investment pools with your friends and strategize the best ways to earn return on your crypto assets - without assuming the generally high volatility and risk associated with active trading.
@@ -57,7 +59,7 @@ Also uses clearbit for company logo fetch.
 Define the following environment variables:
 <pre>
     REACT_APP_NFT_KEY={YOUR NFT STORAGE KEY} // Used for NFT generation
-    REACT_APP_RPC_URL={YOUR RPC NODE URL} // Used for blockchain network calls.
+    REACT_APP_RPC_URL={YOUR RPC NODE URL} // Mumbai test net RPC url (ex: Infura, Alchemy)
     // Optional (for persistent non-IFPS storage)
     REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
     REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
@@ -65,7 +67,10 @@ Define the following environment variables:
 
 `yarn; yarn start`
 
-The app should now be running on port http://127.0.0.1:3000/
+The app should now be running on port http://127.0.0.1:3000.
+
+<b>Important, you should use http://127.0.0.1 for local development to connect to moralis RPC (otherwise may result in CORS errors).</b>
+
 
 ## Screenshots
 

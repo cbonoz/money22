@@ -2,17 +2,13 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "usingtellor/contracts/UsingTellor.sol";
 
-contract WorkPool is Ownable, UsingTellor {
+contract WorkPool is Ownable {
 
     string private company;
     string private name;
 
     string private code;
-
-    bytes memory _currentEthPrice;
-
 
     constructor(string memory _company, string memory _name, string memory _code) {
         name = _name;
@@ -28,8 +24,17 @@ contract WorkPool is Ownable, UsingTellor {
         return company;
     }
 
-   function getCode() public view onlyOwner returns(string memory) {
+    function getCode() public view onlyOwner returns(string memory) {
         return code;
+    }
+
+    function compareStrings(string memory a, string memory b) public pure returns (bool) {
+        return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
+    }
+
+    function checkCode(string memory inputCode) public view returns(bool) {
+        require(compareStrings(inputCode, code), "Invalid Code");
+        return true;
     }
 
 }

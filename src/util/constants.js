@@ -12,6 +12,7 @@ const requireEnv = (k) => {
 export const NFT_STORAGE_KEY = requireEnv('REACT_APP_NFT_KEY')
 
 export const RPC_ID = process.env.REACT_APP_INFURA_ID
+export const RPC_URL = process.env.REACT_APP_RPC_URL || 'https://rpc-matic.mumbai.today'
 export const MORALIS_SERVER = process.env.REACT_APP_MORALIS_SERVER
 export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID
 
@@ -36,7 +37,9 @@ export const CHAIN_OPTIONS = {
    5: { name: "goerli", url: "https://goerli.etherscan.io/", addressUrl: "https://goerli.etherscan.io/address/", id: 5 },
 }
   
-  export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["80001"];
+export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["80001"];
+
+export const AAVE_MUMBAI_RESERVE = "0xb685400156cF3CBE8725958DeAA61436727A30c3"
 
 export const IPFS_BASE_URL = "https://ipfs.moralis.io:2053/ipfs";
 
@@ -52,3 +55,5 @@ export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
   (previousValue, currentValue) => previousValue + currentValue,
   0
 );
+
+export const MORALIS = false;
