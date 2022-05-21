@@ -15,7 +15,7 @@
     "chart.js": "^3.7.1",
     "ethers": "^5.6.6",
     "hardhat": "^2.9.5",
-    "js-waku": "^0.13.0",
+    "js-waku": "^0.22.0",
     "mime": "^3.0.0",
     "moralis": "^1.7.0",
     "nft.storage": "^6.2.0",
@@ -31,9 +31,6 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.7.3",
     "zksync-web3": "^0.4.0"
-  },
-  "engines" : { 
-    "node" : ">=16.0.0" 
   },
   "scripts": {
     "start": "react-scripts start",
