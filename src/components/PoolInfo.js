@@ -13,7 +13,7 @@ import { AAVE_MUMBAI_RESERVE, APP_DESC, INITIAL_BALANCE, PIE_DATA } from '../uti
 import { checkCode, getProvider, getSigner } from '../contract/deploy';
 
 import 'chartkick/chart.js'
-import { supply } from '../util/aave';
+import { supply, withdraw } from '../util/aave';
 
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
@@ -24,17 +24,34 @@ export default function PoolInfo({address}  ) {
     const [code, setCode] = useState()
     const [amount, setAmount] = useState()
     const [error, setError] = useState()
+    const [loading, setLoading] = useState()
     const [data, setData] = useState({})
 
     const navigate = useNavigate()
 
-    // TODO: add aave supply action.
-
     const deposit = async ()  => {
+        setLoading(true)
+        setError()
         try {
-            await supply(await getProvider(), address, AAVE_MUMBAI_RESERVE, amount)
+            await supply(address, AAVE_MUMBAI_RESERVE, amount)
         } catch (e) {
             console.error('err', e)
+            setError(e.toString())
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const withdrawl = async ()  => {
+        setLoading(true)
+        setError()
+        try {
+            await withdraw(address, AAVE_MUMBAI_RESERVE, amount)
+        } catch (e) {
+            console.error('err', e)
+            setError(e.toString())
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -55,11 +72,6 @@ export default function PoolInfo({address}  ) {
         }
         // TODO: add access check logic.
     }
-
-    useEffect(() => {
-
-    })
-
 
     if (!hasAccess) {
         return <div>
@@ -98,7 +110,9 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                         <br/>
 
                         <Button className='standard-btn' type="primary" onClick={deposit}>Add funds</Button>
-                        {/* <Button className='standard-btn' onClick={withdraw}>Remove funds</Button> */}
+                        &nbsp;
+                        <Button className='standard-btn' onClick={withdrawl}>Remove funds</Button>
+                        {error && <p className='error-text'>{error}</p>}
                     </Panel>
                     <Panel header="Tempus" width="100%" key="1">
                         <iframe src={"https://testnet.tempus.finance/"}  width="100%" height="600"/>
