@@ -47,8 +47,8 @@ Polygon: Low cost contract deployment for each WorkPool smart contract. Code is 
 
 #### Rewards
 Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
-Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool.
-Tempus: Another ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
+Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool. 
+Tempus: Secondary ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
 
 #### Experience
 Waku: Used for in-app chat, messaging obfuscated by the address.

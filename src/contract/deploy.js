@@ -61,36 +61,36 @@ export async function deployContract(company, name, code) {
   return contract;
 }
 
-// An example of a deploy script that will deploy and call a simple contract.
-export async function deployZkContract(hre) {
-  console.log(`Running deploy script for the Greeter contract`);
+// // An example of a deploy script that will deploy and call a simple contract.
+// export async function deployZkContract(hre) {
+//   console.log(`Running deploy script for the Greeter contract`);
 
-  // Initialize the wallet.
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+//   // Initialize the wallet.
+//   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
-  // Create deployer object and load the artifact of the contract we want to deploy.
-  const deployer = {} // new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("WorkPool");
+//   // Create deployer object and load the artifact of the contract we want to deploy.
+//   const deployer = {} // new Deployer(hre, wallet);
+//   const artifact = await deployer.loadArtifact("WorkPool");
 
-  // Deposit some funds to L2 in order to be able to perform L2 transactions.
-  const depositAmount = ethers.utils.parseEther("0.001");
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: utils.ETH_ADDRESS,
-    amount: depositAmount,
-  });
-  // Wait until the deposit is processed on zkSync
-  await depositHandle.wait();
+//   // Deposit some funds to L2 in order to be able to perform L2 transactions.
+//   const depositAmount = ethers.utils.parseEther("0.001");
+//   const depositHandle = await deployer.zkWallet.deposit({
+//     to: deployer.zkWallet.address,
+//     token: utils.ETH_ADDRESS,
+//     amount: depositAmount,
+//   });
+//   // Wait until the deposit is processed on zkSync
+//   await depositHandle.wait();
 
-  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-  // `greeting` is an argument for contract constructor.
-  const greeting = "Hi there!";
-  const greeterContract = await deployer.deploy(artifact, [greeting]);
+//   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+//   // `greeting` is an argument for contract constructor.
+//   const greeting = "Hi there!";
+//   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
-  // Show the contract info.
-  const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
-}
+//   // Show the contract info.
+//   const contractAddress = greeterContract.address;
+//   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+// }
 
 export const checkCode = async (cAddress, code) => {
   const signer = await getSigner();
