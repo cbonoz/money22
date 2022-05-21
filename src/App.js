@@ -29,10 +29,10 @@ function App() {
       await Moralis.User.logOut();
     } else {
       try {
-        await window.ethereum.request({
-          method: "eth_requestAccounts",
-          params: [{eth_accounts: {}}]
-        })
+        // await window.ethereum.request({
+        //   method: "eth_requestAccounts",
+        //   params: [{eth_accounts: {}}]
+        // })
         const p  = await getProvider()
         await p.provider.disconnect()
         console.log('logout')

@@ -10224,7 +10224,7 @@ js-sha3@0.8.0, js-sha3@^0.8.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-waku@^0.22.0:
+js-waku@0.22.0:
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/js-waku/-/js-waku-0.22.0.tgz#71f19cc433ec4f7b909c66c9809f39334f1666a4"
   integrity sha512-4aMOJI6HKSaJ4eLfanbD1CDifwUgCPfcIDnIrt96SJA5A3nf9VXFZUmR1huwv07JithmkP9orXNGb6u8KdGcrg==
