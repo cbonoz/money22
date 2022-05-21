@@ -34,7 +34,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "install": "yarn install --ignore-engines",
     "build": "react-scripts build --ignore-engines",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
