@@ -41,18 +41,18 @@ Demo flow:
 ### Technologies used:
 
 #### Authentication/ Deployment
-WorldCoin: Validate the user accessing/creating the pool. Prevent the same user from creating duplicate pools that belong to the same organization.
-WalletConnect: https://docs.walletconnect.com/quick-start/dapps/web3-provider. Walletconnect enables usage of the WorkPool app from any supported wallet with a QR code scanner.
-Polygon: Low cost contract deployment for each WorkPool smart contract. Code is privately stored on the contract and used for work pool access - only the owner can fetch the active code value.
+* WorldCoin: Validate the user accessing/creating the pool. Prevent the same user from creating duplicate pools that belong to the same organization.
+* WalletConnect: https://docs.walletconnect.com/quick-start/dapps/web3-provider. Walletconnect enables usage of the WorkPool app from any supported wallet with a QR code scanner.
+* Polygon: Low cost contract deployment for each WorkPool smart contract. Code is privately stored on the contract and used for work pool access - only the owner can fetch the active code value.
 
 #### Rewards
-Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
-Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool. 
-Tempus: Secondary ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
+* Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
+* Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool. 
+* Tempus: Secondary ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
 
 #### Experience
-Waku: Used for in-app chat, messaging obfuscated by the address.
-Spheron: Deployment
+* Waku: Used for in-app chat, messaging obfuscated by the address.
+* Spheron: Deployment
 
 Also uses clearbit for company logo fetch.
 
