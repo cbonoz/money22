@@ -9,11 +9,11 @@ import CreatePool from './components/CreatePool';
 import PoolInfo from './components/PoolInfo';
 import Moralis from "moralis";
 import logo from "./assets/logo.png";
-import { getExistingAddress, initWeb3 } from './util/web3util';
+import { initWeb3 } from './util/web3util';
 
 import "antd/dist/antd.min.css";
 import "./App.css";
-import { getAddress } from 'ethers/lib/utils';
+import { getProvider } from './contract/deploy';
 
 const { Header, Footer, Sider, Content } = Layout;
 // const MORALIS = false; // Enable for production backend storage.
@@ -21,13 +21,25 @@ const { Header, Footer, Sider, Content } = Layout;
 function App() {
   // const { authenticate, isAuthenticated, address, logout  } = useMoralis();
   const [address, setAddress]= useState()
-  const [provider ,setProvider] = useState()
 
   
   const logout = async () => {
     console.log('logout')
     if (MORALIS) {
       await Moralis.User.logOut();
+    } else {
+      try {
+        await window.ethereum.request({
+          method: "eth_requestAccounts",
+          params: [{eth_accounts: {}}]
+        })
+        const p  = await getProvider()
+        await p.provider.disconnect()
+        console.log('logout')
+      } catch (e) {
+        console.error('e', e)
+        // Catch error
+      }
     }
     setAddress(undefined)
   }
