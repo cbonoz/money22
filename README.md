@@ -21,6 +21,7 @@ It's common to create small crypto social groups at work, but often that's where
 
 WorkPools reduces intimidation by creating a group space for coworkers/friends to learn about yield pools and invest together.
 
+
 <!--
 Demo flow:
 
@@ -35,21 +36,22 @@ Demo flow:
 3. Create the pool / invite others by sharing a unique link to the pool. 
 4. View investment progress from the WorkPool dashboard.
 5. Communicate with other individuals in the group and select passive investments.
+6. Monitor your progress and unlock NFT rewards as your group reaches key investment progress markers (1k, 5k, 10k).
 
 ### Technologies used:
 
 #### Authentication/ Deployment
 WorldCoin: Validate the user accessing/creating the pool. Prevent the same user from creating duplicate pools that belong to the same organization.
-WalletConnect: https://docs.walletconnect.com/quick-start/dapps/web3-provider
-Polygon: Low cost contract deployment for each WorkPool smart contract.
+WalletConnect: https://docs.walletconnect.com/quick-start/dapps/web3-provider. Walletconnect enables usage of the WorkPool app from any supported wallet with a QR code scanner.
+Polygon: Low cost contract deployment for each WorkPool smart contract. Code is privately stored on the contract and used for work pool access - only the owner can fetch the active code value.
 
 #### Rewards
 Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
-Aave: Embeded on the dashboard - initiate deposits from your WorkPool.
-Tempus: Another ethereum-based fixed-income provider. Tempus portal embedded in the app (currently testnet).
+Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool.
+Tempus: Another ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
 
 #### Experience
-Waku: Used for in-app chat.
+Waku: Used for in-app chat, messaging obfuscated by the address.
 Spheron: Deployment
 
 Also uses clearbit for company logo fetch.
@@ -64,6 +66,8 @@ Define the following environment variables:
     REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
     REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
 </pre>
+
+App is currently configured to run against Polygon / Mumbai. Recommend adding your own mumbai-based RPC url (ex: Alchemy/Infura) in order to serve the application.
 
 `yarn; yarn start`
 
