@@ -52,7 +52,6 @@ Demo flow:
 
 #### Experience
 * Waku: Used for in-app chat, messaging obfuscated by the address.
-* Spheron: Deployment
 
 Also uses clearbit for company logo fetch.
 
