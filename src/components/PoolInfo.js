@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { Button, Tabs, Input, Statistic, Card, Row, Col, Collapse } from 'antd'
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import { formatMoney, getExplorerUrl } from '../util';
-import MintButton from './MintButton';
 
 // Main pool info page
 import { PieChart } from 'react-chartkick'
@@ -117,13 +116,7 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                     </Panel>
                 </Collapse>
                 </TabPane>
-                <TabPane tab="Badges" key="2">
-                    <h3>Unlock collectible badges here as you hit key investment milestones.</h3>
-                    <p>You can mint as many of these as you like once you hit the threshold.</p>
-                    <MintButton balance={balance} rewardBalance={1000}/>
-                    <MintButton balance={balance} rewardBalance={5000}/>
-                    <MintButton balance={balance} rewardBalance={10000}/>
-                </TabPane>
+               
                 {/* <TabPane tab="Calculator" key="3">
                     <h1>Interest Calculator</h1>
                 </TabPane> */}
