@@ -3,14 +3,12 @@ import { Button, Tabs, Input, Statistic, Card, Row, Col, Collapse } from 'antd'
 import {useParams, useNavigate, useLocation} from "react-router-dom";
 import { formatMoney, getExplorerUrl } from '../util';
 import MintButton from './MintButton';
-import InvestmentCard from './cards/InvestmentCard';
-import Chat from './Chat';
 
 // Main pool info page
 import { PieChart } from 'react-chartkick'
 import { AAVE_MUMBAI_RESERVE, APP_DESC, INITIAL_BALANCE, PIE_DATA } from '../util/constants';
 // import { AMM } from '@voltz-protocol/v1-sdk/dist/types/entities';
-import { checkCode, getProvider, getSigner } from '../contract/deploy';
+import { checkCode } from '../contract/deploy';
 
 import 'chartkick/chart.js'
 import { supply, withdraw } from '../util/aave';
@@ -129,13 +127,8 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
                 {/* <TabPane tab="Calculator" key="3">
                     <h1>Interest Calculator</h1>
                 </TabPane> */}
-                <TabPane tab="Chat" key="3">
-                    <h1>Group chat</h1>
-                    <p>Chat with other individuals that have access to this pool.</p>
-                    <Chat address={address}/>
-                </TabPane>
    
-                <TabPane tab="Invite others" key="4">
+                <TabPane tab="Invite others" key="3">
                     <h1>Invite others to this WorkPool!</h1>
 
                     <p>Share url: {window.location.href}</p>
