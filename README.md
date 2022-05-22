@@ -75,7 +75,6 @@ The app should now be running on port http://127.0.0.1:3000.
 
 <b>Important, you should use http://127.0.0.1 for local development to connect to moralis RPC (otherwise may result in CORS errors).</b>
 
-
 ## Screenshots
 
 ### Home page
@@ -89,6 +88,13 @@ The app should now be running on port http://127.0.0.1:3000.
 
 ### WorkPool dashboard / investment management
 <img src="./img/dashboard.png" width=800/>
+
+
+### Updating the WorkPool smart contract
+
+Make any changes to `WorkPool.sol` in the `contracts` directory.
+
+`cd contracts; yarn; npx hardhat compile`
 
 ### Useful links
 *  https://nft.storage/
