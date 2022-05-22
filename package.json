@@ -5,9 +5,6 @@
   "dependencies": {
     "@aave/contract-helpers": "^1.3.2",
     "@maticnetwork/walletconnect-provider": "^0.0.1-beta.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
     "@walletconnect/web3-provider": "^1.7.8",
     "@worldcoin/id": "^0.0.2",
     "antd": "^4.20.4",
@@ -17,7 +14,6 @@
     "hardhat": "^2.9.5",
     "mime": "^3.0.0",
     "moralis": "^1.7.0",
-    "nft.storage": "^6.2.0",
     "protobufjs": "^6.11.2",
     "react": "^18.1.0",
     "react-chartkick": "^0.5.2",
@@ -28,8 +24,7 @@
     "react-scripts": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "web-vitals": "^2.1.4",
-    "web3": "^1.7.3",
-    "zksync-web3": "^0.4.0"
+    "web3": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
