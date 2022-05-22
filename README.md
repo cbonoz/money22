@@ -48,6 +48,7 @@ Demo flow:
 #### Rewards
 * Filecoin: Earn NFT rewards as you hit key investment milestones with your group.
 * Aave: Embeded on the dashboard - initiate deposits and withdrawls from your WorkPool. 
+* Covalent: Used to pull historic data from Aave. Reference-able by users in the app to determine if it may be a good time to invest/lend based on past rates.
 * Tempus: Secondary ethereum-based fixed-income provider. Tempus portal embedded in the app dashboard (currently testnet).
 
 #### Experience
@@ -64,6 +65,7 @@ Define the following environment variables:
     // Optional (for persistent non-IFPS storage)
     REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
     REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
+    REACT_APP_COVALENT_KEY={YOUR COVALENT API KEY} # Optional, needed for in-app historic aave rates.
 </pre>
 
 App is currently configured to run against Polygon / Mumbai. Recommend adding your own mumbai-based RPC url (ex: Alchemy/Infura) in order to serve the application.
@@ -85,8 +87,17 @@ The app should now be running on port http://127.0.0.1:3000.
 <!-- ### WorkPool created 
 <img src="./img/create.png" width=800/> -->
 
-### WorkPool dashboard / investment management
+### WorkPool dashboard and pool investment management
 <img src="./img/dashboard.png" width=800/>
+
+### Depositing or withdrawing from Aave reserve / pool.
+<img src="./img/aave.png" width=800/>
+
+### Checking latest rates for Aave stablecoin lending.
+<img src="./img/rates.png" width=800/>
+
+### Connecting to Tempus embed.
+<img src="./img/tempus.png" width=800/>
 
 
 ### Updating the WorkPool smart contract

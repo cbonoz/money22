@@ -56,4 +56,6 @@ export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
   0
 );
 
+export const COVALENT_KEY = process.env.REACT_APP_COVALENT_KEY;
+
 export const MORALIS = false;

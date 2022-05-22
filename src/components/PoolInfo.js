@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Tabs, Input, Statistic, Card, Row, Col, Collapse } from 'antd'
-import {useParams, useNavigate, useLocation} from "react-router-dom";
+import { Button, Modal, Tabs, Input, Statistic, Card, Row, Col, Collapse } from 'antd'
+import {useParams, useNavigate } from "react-router-dom";
 import { formatMoney, getExplorerUrl } from '../util';
 import MintButton from './MintButton';
-import InvestmentCard from './cards/InvestmentCard';
 import Chat from './Chat';
 
 // Main pool info page
 import { PieChart } from 'react-chartkick'
-import { AAVE_MUMBAI_RESERVE, APP_DESC, INITIAL_BALANCE, PIE_DATA } from '../util/constants';
+import { AAVE_MUMBAI_RESERVE, APP_DESC, COVALENT_KEY, INITIAL_BALANCE, PIE_DATA } from '../util/constants';
 // import { AMM } from '@voltz-protocol/v1-sdk/dist/types/entities';
-import { checkCode, getProvider, getSigner } from '../contract/deploy';
+import { checkCode } from '../contract/deploy';
 
 import 'chartkick/chart.js'
 import { supply, withdraw } from '../util/aave';
+import { ACTIVE_COIN, getHistoricRates } from '../util/covalent';
 
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
@@ -26,6 +26,28 @@ export default function PoolInfo({address}  ) {
     const [error, setError] = useState()
     const [loading, setLoading] = useState()
     const [data, setData] = useState({})
+    const [rateModal, setRateModal] = useState(false)
+
+    const viewRates = (e) => {
+        e.preventDefault()
+        setRateModal(true)
+    }
+    async function fetchRates() {
+        setData({})
+        try {
+            const res = await getHistoricRates()
+            setData(res.data)
+        } catch (e) {
+            console.error('rates error', e)
+            setError('Error fetching rates: ' + e.toString())
+        }
+    }
+
+    useEffect(() => {
+        if (rateModal) {
+            fetchRates()
+        }
+    }, [rateModal])
 
     const navigate = useNavigate()
 
@@ -111,7 +133,9 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
 
                         <Button className='standard-btn' type="primary" onClick={deposit}>Add funds</Button>
                         &nbsp;
-                        <Button className='standard-btn' onClick={withdrawl}>Remove funds</Button>
+                        <Button className='standard-btn' onClick={withdrawl}>Remove funds</Button>&nbsp;
+
+                        {COVALENT_KEY && <a href={"#"} onClick={viewRates}>View historic rates</a>}
                         {error && <p className='error-text'>{error}</p>}
                     </Panel>
                     <Panel header="Tempus" width="100%" key="1">
@@ -147,6 +171,13 @@ Your Address: <a href={getExplorerUrl(address)} target="_blank">{address}</a>
             <Col span={4}> */}
             {/* </Col> */}
         </Row>
+
+        <Modal width={800} onCancel={() => setRateModal(false)} cancelButtonProps={{ style: { display: 'none' } }} title={`Aave Historic Rates (${ACTIVE_COIN})`} visible={rateModal} onOk={() => setRateModal(false)}>
+            <p>Below are historic rates for the stablecoin {ACTIVE_COIN} on Aave for the most recent month. You can potentially use this as a baseline for determining if a good time to lend.</p>
+            <pre>
+                {JSON.stringify((data.data || {}).items, null, '\t')}
+            </pre>
+        </Modal>
 
         
     </div>
