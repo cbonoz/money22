@@ -1,11 +1,7 @@
-import { utils, Wallet } from "zksync-web3";
-import Moralis from "moralis";
-
 import * as ethers from "ethers";
 
 import { CONTRACT } from "./metadata";
 import { initWeb3 } from "../util/web3util";
-import { MORALIS } from "../util/constants";
 // import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 
@@ -20,15 +16,7 @@ export const validAddress = (addr) => {
 
 
 export const getProvider = async () => {
-  if (MORALIS) {
-    return Moralis.provider
-  }
   return await initWeb3();
-    // return web3Provider;
-  // return await Moralis.enableWeb3({provider: 'walletconnect'})
-
-  // await window.ethereum.enable();
-  // return new ethers.providers.Web3Provider(window.ethereum);
 }
 
 export const getSigner = async () => {

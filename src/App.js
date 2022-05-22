@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { Button, Layout, Menu } from "antd";
-import { APP_NAME, MORALIS, MORALIS_ID, MORALIS_SERVER } from "./util/constants";
+import { APP_NAME  } from "./util/constants";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./components/About";
 import FindPool from './components/FindPool';
 import CreatePool from './components/CreatePool';
 // import { initWeb3, web3Provider } from './util/web3util';
 import PoolInfo from './components/PoolInfo';
-import Moralis from "moralis";
 import logo from "./assets/logo.png";
 import { initWeb3 } from './util/web3util';
 
@@ -16,69 +15,36 @@ import "./App.css";
 import { getProvider } from './contract/deploy';
 
 const { Header, Footer, Sider, Content } = Layout;
-// const MORALIS = false; // Enable for production backend storage.
-
 function App() {
-  // const { authenticate, isAuthenticated, address, logout  } = useMoralis();
   const [address, setAddress]= useState()
 
   
   const logout = async () => {
     console.log('logout')
-    if (MORALIS) {
-      await Moralis.User.logOut();
-    } else {
-      try {
-        // await window.ethereum.request({
-        //   method: "eth_requestAccounts",
-        //   params: [{eth_accounts: {}}]
-        // })
-        const p  = await getProvider()
-        await p.provider.disconnect()
-        console.log('logout')
-      } catch (e) {
-        console.error('e', e)
-        // Catch error
-      }
+    try {
+      // await window.ethereum.request({
+      //   method: "eth_requestAccounts",
+      //   params: [{eth_accounts: {}}]
+      // })
+      const p  = await getProvider()
+      await p.provider.disconnect()
+      console.log('logout')
+    } catch (e) {
+      console.error('e', e)
+      // Catch error
     }
     setAddress(undefined)
   }
  
   async function login() {
-    if (MORALIS) {
-    let u = Moralis.address.current();
-    if (!u) {
-     try {
-       console.log('authenticate')
-        // u = await Moralis.authenticate({ provider: 'walletconnect' })j
-        u = await Moralis.authenticate()
-        const addr = u.get('ethAddress')
-        setAddress(addr)
-        console.log('addr',  addr)
-     } catch(error) {
-       console.log('err', error)
-     }
-    }
-   } else {
      const p = await initWeb3()
      const addr = p.provider.accounts[0]
      console.log('addr', p, addr)
      setAddress(addr)
-   }
   }
  
   useEffect(() => {
-    const body = {serverUrl: MORALIS_SERVER, appId: MORALIS_ID}
-    console.log('init moralis', body)
-    if (MORALIS) {
-      Moralis.start(body)
-      let u = Moralis.address.current() 
-      if (u) {
-        setAddress(u.get('ethAddress'))
-      }
-    }  else {
-      login()
-    }
+    login()
   }, [])
 
   console.log('addr', address)

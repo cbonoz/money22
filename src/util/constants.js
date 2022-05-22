@@ -13,8 +13,6 @@ export const NFT_STORAGE_KEY = requireEnv('REACT_APP_NFT_KEY')
 
 export const RPC_ID = process.env.REACT_APP_INFURA_ID
 export const RPC_URL = process.env.REACT_APP_RPC_URL || 'https://rpc-matic.mumbai.today'
-export const MORALIS_SERVER = process.env.REACT_APP_MORALIS_SERVER
-export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID
 
 export const EXAMPLE_FORM = {}
 export const LOGIN_MESSAGE = "WorldPools would like connect to your wallet."
@@ -41,8 +39,6 @@ export const ACTIVE_CHAIN_ID = CHAIN_OPTIONS["80001"];
 
 export const AAVE_MUMBAI_RESERVE = "0xb685400156cF3CBE8725958DeAA61436727A30c3"
 
-export const IPFS_BASE_URL = "https://ipfs.moralis.io:2053/ipfs";
-
 export const REWARD_IMAGES = {
     1000:'https://image.shutterstock.com/image-vector/1000-dollars-sign-usd-badge-260nw-1892401765.jpg',
     5000:'https://icon-library.com/images/google-icon-image/google-icon-image-10.jpg',
@@ -55,7 +51,6 @@ export const INITIAL_BALANCE = PIE_DATA.map(x => x[1]).reduce(
   (previousValue, currentValue) => previousValue + currentValue,
   0
 );
+export const IPFS_BASE_URL = 'https://ipfs.io/ipfs/'
 
 export const COVALENT_KEY = process.env.REACT_APP_COVALENT_KEY;
-
-export const MORALIS = false;

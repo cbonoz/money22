@@ -63,8 +63,6 @@ Define the following environment variables:
     REACT_APP_NFT_KEY={YOUR NFT STORAGE KEY} // Used for NFT generation
     REACT_APP_RPC_URL={YOUR RPC NODE URL} // Mumbai test net RPC url (ex: Infura, Alchemy)
     // Optional (for persistent non-IFPS storage)
-    REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Moralis app id 
-    REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Moralis server url
     REACT_APP_COVALENT_KEY={YOUR COVALENT API KEY} # Optional, needed for in-app historic aave rates.
 </pre>
 
@@ -72,9 +70,7 @@ App is currently configured to run against Polygon / Mumbai. Recommend adding yo
 
 `yarn; yarn start`
 
-The app should now be running on port http://127.0.0.1:3000.
-
-<b>Important, you should use http://127.0.0.1 for local development to connect to moralis RPC (otherwise may result in CORS errors).</b>
+The app should now be running on port http://localhost:3000.
 
 ## Screenshots
 

@@ -6,20 +6,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { MORALIS_ID, MORALIS_SERVER } from "./util/constants";
-import { MoralisProvider } from "react-moralis";
 // https://hackmd.io/@hackyguru/walletconnect
-
-const moralisEnabled = MORALIS_ID && MORALIS_SERVER
-console.log(MORALIS_SERVER, MORALIS_ID)
 
 ReactDOM.render(
   <React.StrictMode>
-      {/* <MoralisProvider serverUrl={MORALIS_SERVER} appId={MORALIS_SERVER}> */}
         <BrowserRouter>
           <App/>
         </BrowserRouter>
-      {/* </MoralisProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
